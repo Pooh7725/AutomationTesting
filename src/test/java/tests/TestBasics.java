@@ -17,6 +17,7 @@ public class TestBasics {
         String URL = PropertyLoader.loadProperty("url");
         driver = BrowserManager.initiateDriver();
         driver.get(URL);
+        driver.manage().window().maximize();
     }
 
     @AfterMethod

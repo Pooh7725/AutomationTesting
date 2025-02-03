@@ -6,7 +6,7 @@ import java.util.Properties;
 
 public class PropertyLoader {
     public static String loadProperty(String propertyName) throws IOException {
-        FileInputStream fi = new FileInputStream("src/test/Resources/config.properties");
+        FileInputStream fi = new FileInputStream("src/test/resources/config.properties");
         Properties p = new Properties();
         p.load(fi);
         return p.getProperty(propertyName);

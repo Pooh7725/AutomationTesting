@@ -1,17 +1,26 @@
 package tests;
 
 import io.qameta.allure.Step;
+import org.json.simple.parser.ParseException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.EnterAccountInformationPage;
 import pages.HomePage;
 import pages.LoginSignupPage;
+import utils.DateandTime;
+
+import java.io.IOException;
 
 public class RegisterUserTest extends TestBasics {
+    String name = "name" + DateandTime.generateCurrentDateAndTime();
+    String email = "poojasaini" + DateandTime.generateCurrentDateAndTime() + "@gmail.com";
+
     @Test
-    public void registerUser() throws InterruptedException {
+    public void registerUser() throws InterruptedException, IOException, ParseException {
         verifyTitle();
         verifyNewUserSignupText();
-        verifyEnteredAccountInformation();
+        verifyEnteredAccountInformationPageIsVisible();
+        verifyThatEnterAccountInformationIsVisible();
 
     }
 
@@ -32,9 +41,7 @@ public class RegisterUserTest extends TestBasics {
     }
 
     @Step("verify entered account information")
-    public void verifyEnteredAccountInformation() throws InterruptedException {
-        String name = "pooja";
-        String email = "pooja.saini@gmail.com";
+    public void verifyEnteredAccountInformationPageIsVisible() throws InterruptedException {
         String VerifyAccount = new LoginSignupPage(driver).loginSignupFillDetails(name, email).getEnterAccountInformation().getText();
         System.out.println(VerifyAccount);
         Assert.assertEquals(VerifyAccount, "ENTER ACCOUNT INFORMATION");
@@ -42,6 +49,14 @@ public class RegisterUserTest extends TestBasics {
 
     }
 
+    @Step("Verify that Enter Account Information is visible")
+    public void verifyThatEnterAccountInformationIsVisible() throws IOException, ParseException {
+        String accountCreatedText = new EnterAccountInformationPage(driver).fillAccountDetails().getAccountCreated().getText();
+        System.out.println(accountCreatedText);
+        Assert.assertEquals(accountCreatedText, "ACCOUNT CREATED!");
+
+
+    }
 
 }
 

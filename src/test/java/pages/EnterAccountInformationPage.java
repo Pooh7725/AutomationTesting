@@ -1,9 +1,16 @@
 package pages;
 
+import org.json.simple.parser.ParseException;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+import utils.DateandTime;
+import utils.JsonReader;
+
+import java.io.IOException;
 
 public class EnterAccountInformationPage {
 
@@ -75,4 +82,36 @@ public class EnterAccountInformationPage {
         return enterAccountInformation;
     }
 
+    public AccountCreatedPage fillAccountDetails() throws IOException, ParseException {
+        String Password = DateandTime.generateCurrentDateAndTime();
+        titleMrCheckbox.click();
+        passwordInput.sendKeys(Password);
+        Select days = new Select(daysSelect);
+        days.selectByValue(JsonReader.accountDetails("day"));
+        Select months = new Select(monthsSelect);
+        months.selectByValue(JsonReader.accountDetails("month"));
+        Select years = new Select(yearsSelect);
+        years.selectByValue(JsonReader.accountDetails("year"));
+        scrollIntoView(newsletterCheckbox).click();
+        specialOffersCheckbox.click();
+        firstNameInput.sendKeys(JsonReader.accountDetails("firstname"));
+        lastNameInput.sendKeys(JsonReader.accountDetails("lastname"));
+        companyInput.sendKeys(JsonReader.accountDetails("company"));
+        address1Input.sendKeys(JsonReader.accountDetails("address1"));
+        address2Input.sendKeys(JsonReader.accountDetails("address2"));
+        Select countrySelector = new Select(scrollIntoView(countrySelect));
+        countrySelector.selectByValue(JsonReader.accountDetails("country"));
+        stateInput.sendKeys(JsonReader.accountDetails("state"));
+        cityInput.sendKeys(JsonReader.accountDetails("city"));
+        zipcodeInput.sendKeys(JsonReader.accountDetails("zipcode"));
+        mobileNumberInput.sendKeys(JsonReader.accountDetails("mobilenumber"));
+        createAccountButton.click();
+        return new AccountCreatedPage(driver);
+    }
+
+    private WebElement scrollIntoView(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);", element);
+        return element;
+    }
 }
