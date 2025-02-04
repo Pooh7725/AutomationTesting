@@ -4,16 +4,16 @@ import io.qameta.allure.Step;
 import org.json.simple.parser.ParseException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.EnterAccountInformationPage;
-import pages.HomePage;
-import pages.LoginSignupPage;
-import utils.DateandTime;
+import pages.*;
 
 import java.io.IOException;
 
+
 public class RegisterUserTest extends TestBasics {
-    String name = "name" + DateandTime.generateCurrentDateAndTime();
-    String email = "poojasaini" + DateandTime.generateCurrentDateAndTime() + "@gmail.com";
+    //    String name = "name" + DateandTime.generateCurrentDateAndTime();
+    String name = "anubhav123";
+    //    String email = "poojasaini" + DateandTime.generateCurrentDateAndTime() + "@gmail.com";
+    String email = "poojasaini@gmail.com";
 
     @Test
     public void registerUser() throws InterruptedException, IOException, ParseException {
@@ -21,7 +21,8 @@ public class RegisterUserTest extends TestBasics {
         verifyNewUserSignupText();
         verifyEnteredAccountInformationPageIsVisible();
         verifyThatEnterAccountInformationIsVisible();
-
+        verifyThatloggedInUsernameIsVisible();
+//        VerifyThatAccountDeletedOptionIsVisible();
     }
 
     @Step("verify title of home page")
@@ -50,11 +51,28 @@ public class RegisterUserTest extends TestBasics {
     }
 
     @Step("Verify that Enter Account Information is visible")
-    public void verifyThatEnterAccountInformationIsVisible() throws IOException, ParseException {
+    public void verifyThatEnterAccountInformationIsVisible() throws IOException, ParseException, InterruptedException {
         String accountCreatedText = new EnterAccountInformationPage(driver).fillAccountDetails().getAccountCreated().getText();
+        Thread.sleep(500);
         System.out.println(accountCreatedText);
         Assert.assertEquals(accountCreatedText, "ACCOUNT CREATED!");
+    }
 
+    @Step("Verify logged in username is visible")
+    public void verifyThatloggedInUsernameIsVisible() {
+        String username = new AccountCreatedPage(driver).continueButtonClick().getUsername().getText();
+        System.out.println(username);
+        Assert.assertEquals(username, "anubhav");
+    }
+
+    @Step("Verify That account deleted option is visible and click continue button")
+    public void VerifyThatAccountDeletedOptionIsVisible() {
+        String accountDeletedText = new LoggedHomePage(driver).deleteAccountButtonClick()
+                .getAccountDeleted()
+                .getText();
+        System.out.println(accountDeletedText);
+        Assert.assertEquals(accountDeletedText, "ACCOUNT DELETED!");
+        new AccountDeletedPage(driver).continueButtonClick();
 
     }
 

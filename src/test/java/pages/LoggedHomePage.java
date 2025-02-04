@@ -13,7 +13,7 @@ public class LoggedHomePage {
     private WebElement deleteAccountButton;
 
     @FindBy(xpath = "//header/div/div/div/div[2]/div/ul/li[4]/a")
-    private WebElement logoutButton;
+    private WebElement LogoutButton;
 
     private WebDriver driver;
 
@@ -26,14 +26,17 @@ public class LoggedHomePage {
         return username;
     }
 
-//    public AccountDeletedPage deleteAccountButtonClick() {
-//        deleteAccountButton.click();
-//        return new AccountDeletedPage(driver);
-//    }
+
+    public AccountDeletedPage deleteAccountButtonClick() {
+        deleteAccountButton.click();
+        return new AccountDeletedPage(driver);
+    }
 
     public LoginSignupPage logoutButtonClick() {
-        logoutButton.click();
+        LogoutButton.click();
         return new LoginSignupPage(driver);
     }
+
+
 }
 

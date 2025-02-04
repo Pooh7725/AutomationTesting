@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-import utils.DateandTime;
 import utils.JsonReader;
 
 import java.io.IOException;
@@ -83,7 +82,8 @@ public class EnterAccountInformationPage {
     }
 
     public AccountCreatedPage fillAccountDetails() throws IOException, ParseException {
-        String Password = DateandTime.generateCurrentDateAndTime();
+//        String Password = DateandTime.generateCurrentDateAndTime();
+        String Password = "harry124";
         titleMrCheckbox.click();
         passwordInput.sendKeys(Password);
         Select days = new Select(daysSelect);
@@ -114,4 +114,6 @@ public class EnterAccountInformationPage {
         js.executeScript("arguments[0].scrollIntoView(true);", element);
         return element;
     }
+
+
 }
