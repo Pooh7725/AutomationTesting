@@ -1,9 +1,13 @@
 package pages;
 
+import org.json.simple.parser.ParseException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utils.JsonReader;
+
+import java.io.IOException;
 
 public class LoginSignupPage {
     @FindBy(css = "button[data-qa='login-button']")
@@ -53,6 +57,13 @@ public class LoginSignupPage {
     public WebElement getLoginToYourAccount() {
         return loginToYourAccount;
     }
+
+
+    public LoginSignupPage fillIncorrectSignup() throws IOException, ParseException, IOException, ParseException {
+        loginSignupFillDetails(JsonReader.existingUser("name"), JsonReader.existingUser("email"));
+        return this;
+    }
+
 
     public void fillLogin(String email, String password) {
         loginEmailInput.sendKeys(email);

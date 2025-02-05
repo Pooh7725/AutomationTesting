@@ -10,10 +10,10 @@ import java.io.IOException;
 
 public class TestBasics {
 
-    WebDriver driver;
+    static WebDriver driver;
 
     @BeforeMethod
-    public void setup() throws IOException {
+    public static void setup() throws IOException {
         String URL = PropertyLoader.loadProperty("url");
         driver = BrowserManager.initiateDriver();
         driver.get(URL);
@@ -21,7 +21,8 @@ public class TestBasics {
     }
 
     @AfterMethod
-    public void tearDown() {
+    public static void tearDown() {
+
         driver.quit();
     }
 }
