@@ -13,7 +13,7 @@ public class TestBasics {
     static WebDriver driver;
 
     @BeforeMethod
-    public static void setup() throws IOException {
+    public void setup() throws IOException {
         String URL = PropertyLoader.loadProperty("url");
         driver = BrowserManager.initiateDriver();
         driver.get(URL);
@@ -21,7 +21,7 @@ public class TestBasics {
     }
 
     @AfterMethod
-    public static void tearDown() {
+    public void tearDown() {
 
         driver.quit();
     }

@@ -5,43 +5,17 @@ import org.json.simple.parser.ParseException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
+import utils.DateandTime;
 
 import java.io.IOException;
 
 
 public class RegisterUserTest extends TestBasics {
-    //    String name = "name" + DateandTime.generateCurrentDateAndTime();
-    static String name = "anubhav123";
-    //    String email = "poojasaini" + DateandTime.generateCurrentDateAndTime() + "@gmail.com";
-    static String email = "poojasaini@gmail.com";
-
-    @Step("Verify logged in username is visible")
-    public static void verifyThatloggedInUsernameIsVisible() {
-        String username = new AccountCreatedPage(driver).continueButtonClick().getUsername().getText();
-        System.out.println(username);
-        Assert.assertEquals(username, "anubhav");
-    }
-
-    @Step("Verify That account deleted option is visible and click continue button")
-    public static void VerifyThatAccountDeletedOptionIsVisible() {
-        String accountDeletedText = new LoggedHomePage(driver).deleteAccountButtonClick()
-                .getAccountDeleted()
-                .getText();
-        System.out.println(accountDeletedText);
-        Assert.assertEquals(accountDeletedText, "ACCOUNT DELETED!");
-        new AccountDeletedPage(driver).continueButtonClick();
-
-    }
-
-    @Test
-    public static void registerUser() throws InterruptedException, IOException, ParseException {
-        verifyTitle();
-        verifyNewUserSignupText();
-        verifyEnteredAccountInformationPageIsVisible();
-        verifyThatEnterAccountInformationIsVisible();
-        verifyThatloggedInUsernameIsVisible();
-//        VerifyThatAccountDeletedOptionIsVisible();
-    }
+    String name = "name" + DateandTime.generateCurrentDateAndTime();
+    //    static String name = "anubhav123";
+    String email = "poojasaini" + DateandTime.generateCurrentDateAndTime() + "@gmail.com";
+    //    static String email = "poojasaini@gmail.com";
+    RegisterUserTest register = new RegisterUserTest();
 
     @Step("verify title of home page")
     public static void verifyTitle() {
@@ -52,15 +26,43 @@ public class RegisterUserTest extends TestBasics {
 
     }
 
+    @Step("Verify logged in username is visible")
+    public void verifyThatloggedInUsernameIsVisible() {
+        String username = new AccountCreatedPage(driver).continueButtonClick().getUsername().getText();
+        System.out.println(username);
+        Assert.assertEquals(username, name);
+    }
+
+    @Step("Verify That account deleted option is visible and click continue button")
+    public void VerifyThatAccountDeletedOptionIsVisible() {
+        String accountDeletedText = new LoggedHomePage(driver).deleteAccountButtonClick()
+                .getAccountDeleted()
+                .getText();
+        System.out.println(accountDeletedText);
+        Assert.assertEquals(accountDeletedText, "ACCOUNT DELETED!");
+        new AccountDeletedPage(driver).continueButtonClick();
+
+    }
+
+    @Test
+    public void registerUser() throws InterruptedException, IOException, ParseException {
+        verifyTitle();
+        verifyNewUserSignupText();
+        verifyEnteredAccountInformationPageIsVisible();
+        verifyThatEnterAccountInformationIsVisible();
+        verifyThatloggedInUsernameIsVisible();
+//        VerifyThatAccountDeletedOptionIsVisible();
+    }
+
     @Step("verify new user signup text")
-    public static void verifyNewUserSignupText() {
+    public void verifyNewUserSignupText() {
         String newUserSignupText = new HomePage(driver).loginSignUpClick().getNewUserSignup().getText();
         System.out.println(newUserSignupText);
         Assert.assertEquals(newUserSignupText, "New User Signup!");
     }
 
     @Step("verify entered account information")
-    public static void verifyEnteredAccountInformationPageIsVisible() throws InterruptedException {
+    public void verifyEnteredAccountInformationPageIsVisible() throws InterruptedException {
         String VerifyAccount = new LoginSignupPage(driver).loginSignupFillDetails(name, email).getEnterAccountInformation().getText();
         System.out.println(VerifyAccount);
         Assert.assertEquals(VerifyAccount, "ENTER ACCOUNT INFORMATION");
@@ -69,7 +71,7 @@ public class RegisterUserTest extends TestBasics {
     }
 
     @Step("Verify that Enter Account Information is visible")
-    public static void verifyThatEnterAccountInformationIsVisible() throws IOException, ParseException, InterruptedException {
+    public void verifyThatEnterAccountInformationIsVisible() throws IOException, ParseException, InterruptedException {
         String accountCreatedText = new EnterAccountInformationPage(driver).fillAccountDetails().getAccountCreated().getText();
         Thread.sleep(500);
         System.out.println(accountCreatedText);

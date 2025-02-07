@@ -8,7 +8,7 @@ import utils.DateandTime;
 
 public class LoginUserWithIncorrectUsernameAndPassword extends TestBasics {
     @Test
-    public static void verifyErrorYourEmailOrPasswordIsIncorrect() {
+    public void verifyErrorYourEmailOrPasswordIsIncorrect() {
         String email = "Poojasaini" + DateandTime.generateCurrentDateAndTime() + "@gmail.com";
         String password = DateandTime.generateCurrentDateAndTime();
         String error = new HomePage(driver).signupLoginClick().fillInCorrectDetails(email, password).getErrorLogin().getText();

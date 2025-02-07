@@ -15,6 +15,13 @@ public class JsonReader {
         Object obj = jsonParser.parse(fi);
         JSONObject accountDetailsObj = (JSONObject) obj;
         return (String) accountDetailsObj.get(data);
+        /*
+                {
+                    "name" : "pooja",
+                    "age" : 3,
+
+                }
+         */
     }
 
     public static String existingUser(String data) throws IOException, ParseException {

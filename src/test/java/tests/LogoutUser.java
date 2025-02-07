@@ -6,7 +6,8 @@ import pages.LoggedHomePage;
 public class LogoutUser extends TestBasics {
     @Test
     public void VerifyThatuserIsLoggedOut() throws InterruptedException {
-        LoginUserWithCorrectUsernameAndPassword.VerifyThatLoggedinUsernameIsVisible();
+        LoginUserWithCorrectUsernameAndPassword login = new LoginUserWithCorrectUsernameAndPassword();
+        login.VerifyThatLoggedinUsernameIsVisible();
         Thread.sleep(5000);
         logoutUser();
         Thread.sleep(5000);

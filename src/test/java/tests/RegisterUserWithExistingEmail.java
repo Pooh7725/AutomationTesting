@@ -17,7 +17,7 @@ public class RegisterUserWithExistingEmail extends TestBasics {
 //            7. Click 'Signup' button
 //            8. Verify error 'Email Address already exist!' is visible""")
     @Test
-    public static void verifyErrorUserAlreadyExist() throws IOException, ParseException {
+    public void verifyErrorUserAlreadyExist() throws IOException, ParseException {
         RegisterUserTest.verifyTitle();
 //        String newUserSignupText = new LoginSignupPage(driver).getNewUserSignup().getText();
         String errorEmailAddressAlreadyExist = new HomePage(driver).loginSignUpClick().fillIncorrectSignup().getEmailAddressAlreadyExist().getText();
