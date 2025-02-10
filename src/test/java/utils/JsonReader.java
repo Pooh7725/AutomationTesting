@@ -1,6 +1,7 @@
 package utils;
 
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -15,13 +16,7 @@ public class JsonReader {
         Object obj = jsonParser.parse(fi);
         JSONObject accountDetailsObj = (JSONObject) obj;
         return (String) accountDetailsObj.get(data);
-        /*
-                {
-                    "name" : "pooja",
-                    "age" : 3,
 
-                }
-         */
     }
 
     public static String existingUser(String data) throws IOException, ParseException {
@@ -31,6 +26,23 @@ public class JsonReader {
         JSONObject existingUser = (JSONObject) obj;
         return (String) existingUser.get(data);
     }
+
+    public static JSONArray sampleUsers() throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        FileReader fileReader = new FileReader("src/test/resources/testData/usersAccountDetails.json");
+        Object obj = jsonParser.parse(fileReader);
+        JSONObject jsonObject = (JSONObject) obj;
+        return (JSONArray) jsonObject.get("users");
+    }
+
+    public static JSONArray sampleUser2() throws IOException, ParseException {
+        JSONParser jsonparser2 = new JSONParser();
+        FileReader fi2 = new FileReader("src/test/resources/testData/MultipleUsers");
+        Object obj = jsonparser2.parse(fi2);
+        JSONObject jsonobj2 = (JSONObject) obj;
+        return (JSONArray) jsonobj2.get("Multipleusers");
+    }
+
 }
 
 
