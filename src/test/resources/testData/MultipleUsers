@@ -1,0 +1,34 @@
+{
+  "Multipleusers": [
+    {
+      "firstname": "percefni",
+      "lastname": "raith",
+      "day": "30",
+      "month": "3",
+      "year": "1996",
+      "company": "dahl",
+      "address1": " gren",
+      "address2": "alvenia",
+      "country": "aquesta",
+      "state": "astramedon",
+      "city": "calay",
+      "zipcode": "560100",
+      "mobilenumber": "9876512315"
+    },
+    {
+      "firstname": "anubhav",
+      "lastname": "saini",
+      "day": "18",
+      "month": "3",
+      "year": "1996",
+      "company": "StoneX",
+      "address1": "37 Cunnigham",
+      "address2": "BY MFAR",
+      "country": "India",
+      "state": "KARNATAKA",
+      "city": "BENGALURU",
+      "zipcode": "560109",
+      "mobilenumber": "9988776655"
+    }
+  ]
+}
